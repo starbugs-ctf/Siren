@@ -1,8 +1,19 @@
-[![Blitz.js](https://raw.githubusercontent.com/blitz-js/art/master/github-cover-photo.png)](https://blitzjs.com)
+# Siren
 
-This is a [Blitz.js](https://github.com/blitz-js/blitz) app.
+## Initial Setup
 
-# **Siren**
+Install [node.js](https://nodejs.org/en/download/).
+
+```
+# Install yarn
+npm install --global yarn
+
+# Install blitz
+yarn global add blitz
+```
+
+You might need to add yarn bin path to your environment variable.
+Use `yarn global bin` command to get the directory location.
 
 ## Getting Started
 
@@ -19,13 +30,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Ensure the `.env.local` file has required environment variables:
 
 ```
-DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/Siren
+DATABASE_URL="file:./db.sqlite"
 ```
 
 Ensure the `.env.test.local` file has required environment variables:
 
 ```
-DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/Siren_test
+DATABASE_URL="file:./db_test.sqlite"
 ```
 
 ## Tests
