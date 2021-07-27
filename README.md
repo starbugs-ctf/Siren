@@ -15,19 +15,10 @@ yarn global add blitz
 You might need to add yarn bin path to your environment variable.
 Use `yarn global bin` command to get the directory location.
 
-## Getting Started
+### Environment Variables
 
-Run your app in the development mode.
-
-```
-blitz dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Environment Variables
-
-Ensure the `.env.local` file has required environment variables:
+Ensure the `.env.local` file has required environment variables
+(`cp .env .env.local` then add this line):
 
 ```
 DATABASE_URL="file:./db.sqlite"
@@ -37,6 +28,21 @@ Ensure the `.env.test.local` file has required environment variables:
 
 ```
 DATABASE_URL="file:./db_test.sqlite"
+```
+
+## Useful Commands
+
+```
+# Run your app in the development mode.
+# Open http://localhost:3000 with your browser to see the result.
+blitz dev
+
+# Reset DB & populate with test data
+# Initialized by `db/seeds.ts`
+blitz prisma migrate reset -f && blitz db seed
+
+# Explore and manipulate data through a webapp
+blitz prisma studio
 ```
 
 ## Tests
