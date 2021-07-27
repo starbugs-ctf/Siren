@@ -30,7 +30,9 @@ Ensure the `.env.test.local` file has required environment variables:
 DATABASE_URL="file:./db_test.sqlite"
 ```
 
-## Useful Commands
+## Development Guides
+
+### Useful Commands
 
 ```
 # Run your app in the development mode.
@@ -45,7 +47,12 @@ blitz prisma migrate reset -f && blitz db seed
 blitz prisma studio
 ```
 
-## Tests
+### Useful Links
+
+- [Tailwind UI](https://tailwindui.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+### Tests
 
 Runs your tests using Jest.
 
