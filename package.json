@@ -24,6 +24,7 @@
     ]
   },
   "dependencies": {
+    "@heroicons/react": "1.0.3",
     "@prisma/client": "2.27.0",
     "autoprefixer": "10",
     "blitz": "0.38.6",

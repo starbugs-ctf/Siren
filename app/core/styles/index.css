@@ -20,18 +20,22 @@
   }
 }
 
-@layer components {
-  .hero {
-    @apply w-full text-[#333];
-  }
+.nav-hero {
+  @apply w-full p-8 bg-gray-900 text-2xl font-semibold tracking-widest text-white text-center uppercase rounded-lg select-none;
 }
 
-.title {
-  @apply m-0 w-full pt-20;
-  font-size: 48px;
+.nav-btn {
+  @apply block w-full text-gray-300 text-left px-4 py-3 rounded-md text-lg font-medium inline-flex items-center;
 }
 
-.title,
-.description {
-  @apply text-center;
+.nav-btn:hover {
+  @apply bg-gray-700 text-white;
+}
+
+.nav-btn.active {
+  @apply bg-gray-700 text-white;
+}
+
+.nav-btn svg {
+  @apply h-6 w-6 mr-2;
 }

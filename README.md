@@ -51,6 +51,7 @@ blitz prisma studio
 
 - [Tailwind UI](https://tailwindui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Hero Icons](https://heroicons.com/)
 
 ### Tests
 
