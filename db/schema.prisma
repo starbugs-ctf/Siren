@@ -80,8 +80,8 @@ model Task {
   exploit   Exploit @relation(fields: [exploitId], references: [id])
   exploitId Int
 
-  team   Team? @relation(fields: [teamId], references: [id])
-  teamId Int?
+  team   Team @relation(fields: [teamId], references: [id])
+  teamId Int
 }
 
 model FlagSubmission {
