@@ -8,13 +8,13 @@ import {
   useQuery,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getTeams from "app/queries/getTeams"
+import getAllTeams from "app/queries/getAllTeams"
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const queryClient = new QueryClient()
 
-  const queryKey = getQueryKey(getTeams, null)
-  await queryClient.prefetchQuery(queryKey, () => invokeWithMiddleware(getTeams, null, ctx))
+  const queryKey = getQueryKey(getAllTeams, null)
+  await queryClient.prefetchQuery(queryKey, () => invokeWithMiddleware(getAllTeams, null, ctx))
 
   return {
     props: {
@@ -24,7 +24,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 }
 
 const Teams: BlitzPage = () => {
-  const [teams] = useQuery(getTeams, null)
+  const [teams] = useQuery(getAllTeams, null)
 
   return (
     <div>

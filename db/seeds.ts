@@ -6,15 +6,15 @@ import db, { Round } from "./index"
 const TOTAL_DAYS = 3
 
 const START_HOUR = 8
-const END_HOUR = 27 // next day 3 am
+const END_HOUR = 18
 
 const dayToRoundDurationSeconds = (day) => {
   if (day === TOTAL_DAYS - 1) {
-    // Last day: 2.5 minutes
-    return 2.5 * 60
-  } else {
-    // Other days: 5 minutes
+    // Last day: 5 minutes
     return 5 * 60
+  } else {
+    // Other days: 10 minutes
+    return 10 * 60
   }
 }
 
@@ -153,6 +153,7 @@ const createExploits = async () => {
       await db.exploit.create({
         data: {
           name: `${problem.slug}_exploit_${i}`,
+          key: `${problem.slug}_exploit_${i}`,
           problemId: problem.id,
         },
       })
@@ -166,7 +167,7 @@ const createTasks = async () => {
   const problems = await db.problem.findMany()
   const teams = await db.team.findMany()
 
-  const randNumTask = Prob.poisson(2.5)
+  const randNumTask = Prob.poisson(2)
 
   for (const roundRange of roundRanges) {
     let roundStart = roundRange.startTime
