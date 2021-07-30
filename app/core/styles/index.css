@@ -39,3 +39,36 @@
 .nav-btn svg {
   @apply h-6 w-6 mr-2;
 }
+
+table.dashboard {
+  @apply border-collapse;
+}
+
+table.dashboard th.rotate {
+  height: 128px;
+  white-space: nowrap;
+  @apply align-bottom;
+}
+
+table.dashboard th.rotate > div {
+  transform: translate(42px, 1px) rotate(-45deg);
+  transform-origin: bottom left;
+  width: 40px;
+}
+
+table.dashboard th.rotate > div > span {
+  @apply inline-block border-b text-left font-semibold pb-1;
+  width: 180px;
+}
+
+table.dashboard td.team {
+  @apply text-right border-t border-b p-2;
+}
+
+table.dashboard td.cell {
+  @apply text-center border;
+}
+
+table.dashboard tr:nth-child(even) {
+  @apply bg-gray-100;
+}

@@ -1,10 +1,11 @@
 import { BlitzPage } from "blitz"
 import Layout from "app/core/layouts/Layout"
+import RoundDashboard from "app/components/RoundDashboard"
 
 const Home: BlitzPage = () => {
   return (
     <div>
-      <h1>Hello, World!</h1>
+      <RoundDashboard round={100} />
     </div>
   )
 }
