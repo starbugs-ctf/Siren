@@ -57,18 +57,42 @@ table.dashboard th.rotate > div {
 }
 
 table.dashboard th.rotate > div > span {
-  @apply inline-block border-b text-left font-semibold pb-1;
+  @apply inline-block border-b border-gray-300 text-left font-semibold pb-1;
   width: 180px;
 }
 
 table.dashboard td.team {
-  @apply text-right border-t border-b p-2;
+  @apply text-right py-2 pr-2 pl-8;
 }
 
 table.dashboard td.cell {
-  @apply text-center border;
+  @apply text-center align-middle;
 }
 
-table.dashboard tr:nth-child(even) {
+table.dashboard td.cell span {
+  @apply block mx-auto;
+}
+
+table.dashboard tbody tr:nth-child(odd) {
   @apply bg-gray-100;
+}
+
+table.dashboard td.cell.okay {
+  @apply bg-green-100;
+}
+
+table.dashboard tbody tr:nth-child(odd) td.cell.okay {
+  @apply bg-green-200;
+}
+
+table.dashboard td.cell.fail {
+  @apply bg-red-100;
+}
+
+table.dashboard tbody tr:nth-child(odd) td.cell.fail {
+  @apply bg-red-200;
+}
+
+table.dashboard td svg {
+  @apply mx-auto;
 }
