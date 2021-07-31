@@ -18,6 +18,10 @@
   a {
     @apply underline text-blue-600 hover:text-blue-800;
   }
+
+  th {
+    @apply font-semibold;
+  }
 }
 
 /* Nav bar */
@@ -76,7 +80,7 @@ table.dashboard th.rotate > div {
 }
 
 table.dashboard th.rotate > div > span {
-  @apply inline-block border-b border-gray-300 text-left font-semibold pb-1;
+  @apply inline-block border-b border-gray-300 text-left pb-1;
   width: 180px;
 }
 
@@ -89,10 +93,16 @@ table.dashboard td.cell {
 }
 
 table.dashboard td.cell span {
+  /* spinner */
   @apply block mx-auto;
 }
 
-table.dashboard tbody tr:nth-child(odd) {
+table.dashboard td.cell svg {
+  /* icons */
+  @apply mx-auto;
+}
+
+table.dashboard tbody tr:nth-child(even) {
   @apply bg-gray-100;
 }
 
@@ -100,7 +110,7 @@ table.dashboard td.cell.okay {
   @apply bg-green-100;
 }
 
-table.dashboard tbody tr:nth-child(odd) td.cell.okay {
+table.dashboard tbody tr:nth-child(even) td.cell.okay {
   @apply bg-green-200;
 }
 
@@ -108,12 +118,8 @@ table.dashboard td.cell.fail {
   @apply bg-red-100;
 }
 
-table.dashboard tbody tr:nth-child(odd) td.cell.fail {
+table.dashboard tbody tr:nth-child(even) td.cell.fail {
   @apply bg-red-200;
-}
-
-table.dashboard td svg {
-  @apply mx-auto;
 }
 
 /* RoundDisplay */
@@ -123,4 +129,29 @@ table.dashboard td svg {
 
 .round-display p {
   @apply text-base font-normal leading-tight;
+}
+
+/* Data Table */
+table.data thead {
+  @apply bg-gray-200 text-gray-700;
+}
+
+table.data th {
+  @apply px-6 py-2;
+}
+
+table.data td {
+  @apply px-6 py-2;
+}
+
+table.data tbody tr {
+  @apply border-b border-gray-200;
+}
+
+table.data tbody tr:nth-child(even) {
+  @apply bg-gray-50;
+}
+
+table.data tbody tr:hover {
+  @apply bg-gray-100;
 }

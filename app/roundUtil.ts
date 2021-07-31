@@ -1,21 +1,13 @@
-import { Ctx } from "blitz"
+import { NotFoundError } from "blitz"
 import { addSeconds } from "date-fns"
 import { RoundRange } from "db"
-
-type GetRoundDurationInput = {
-  roundRanges: RoundRange[]
-  roundId: number
-}
 
 export interface RoundDuration {
   start: Date
   end: Date
 }
 
-export default async function getRoundDuration(
-  { roundRanges, roundId }: GetRoundDurationInput,
-  ctx: Ctx
-): Promise<RoundDuration | null> {
+export function getRoundDuration(roundRanges: RoundRange[], roundId: number): RoundDuration {
   for (const roundRange of roundRanges) {
     if (roundRange.startRoundId <= roundId && roundId <= roundRange.endRoundId) {
       const roundStart = addSeconds(
@@ -30,5 +22,5 @@ export default async function getRoundDuration(
     }
   }
 
-  return null
+  throw new NotFoundError("Round not found in round ranges")
 }

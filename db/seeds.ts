@@ -138,7 +138,7 @@ const createRounds = async () => {
         startRoundId: rounds[0]!.id,
         endRoundId: rounds[rounds.length - 1]!.id,
         durationSeconds: roundDurationSeconds,
-        startTime: firstDayStart,
+        startTime: todayStart,
       },
     })
   }

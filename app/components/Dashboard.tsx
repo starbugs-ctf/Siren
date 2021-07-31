@@ -42,11 +42,7 @@ export const LoadingCell = () => {
 }
 
 export const EmptyCell = () => {
-  return (
-    <td className="cell fail">
-      <td className="cell">-</td>
-    </td>
-  )
+  return <td className="cell">-</td>
 }
 
 export const taskListToCell = (tasks: GetTasksForRoundReturnType, key: string) => {
