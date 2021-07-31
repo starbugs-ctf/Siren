@@ -20,6 +20,7 @@
   }
 }
 
+/* Nav bar */
 .nav-hero {
   @apply w-full p-8 bg-gray-900 text-2xl font-semibold tracking-widest text-white text-center uppercase rounded-lg select-none;
 }
@@ -40,6 +41,7 @@
   @apply h-6 w-6 mr-2;
 }
 
+/* Dashboard */
 table.dashboard {
   @apply border-collapse;
 }
@@ -95,4 +97,13 @@ table.dashboard tbody tr:nth-child(odd) td.cell.fail {
 
 table.dashboard td svg {
   @apply mx-auto;
+}
+
+/* RoundDisplay */
+.round-display h1 {
+  @apply text-2xl font-bold mb-2;
+}
+
+.round-display p {
+  @apply text-base font-normal leading-tight;
 }

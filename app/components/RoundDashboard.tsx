@@ -4,6 +4,7 @@ import getAllProblems from "app/queries/getAllProblems"
 import getTasksForRound from "app/queries/getTasksForRound"
 
 import { RotatedHeader, taskListToCell } from "./Dashboard"
+import { RoundDisplay } from "./RoundDisplay"
 
 type RoundDashboardProps = {
   round: number
@@ -30,7 +31,9 @@ export const RoundDashboard = (props: RoundDashboardProps) => {
     <table className="dashboard">
       <thead>
         <tr>
-          <th>Round {props.round}</th>
+          <th>
+            <RoundDisplay round={props.round} />
+          </th>
           {problems.map((problem) => (
             <RotatedHeader key={problem.slug}>{problem.name}</RotatedHeader>
           ))}
