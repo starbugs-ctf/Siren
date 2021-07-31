@@ -6,6 +6,8 @@ import {
   invokeWithMiddleware,
   dehydrate,
   useQuery,
+  Link,
+  Routes,
 } from "blitz"
 import { format } from "date-fns"
 import Layout from "app/core/layouts/Layout"
@@ -46,7 +48,11 @@ const RoundTable = () => {
           const roundDuration = getRoundDuration(roundRanges, round.id)
           return (
             <tr key={round.id}>
-              <td>Round {round.id}</td>
+              <td>
+                <Link href={Routes.RoundDetail({ roundId: round.id })}>
+                  <a>Round {round.id}</a>
+                </Link>
+              </td>
               <td>{format(roundDuration.start, DATE_FORMAT)}</td>
               <td>{format(roundDuration.end, DATE_FORMAT)}</td>
             </tr>
