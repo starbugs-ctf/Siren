@@ -27,13 +27,15 @@ const Rounds: BlitzPage = () => {
   const [rounds] = useQuery(getAllRounds, null)
 
   return (
-    <div>
-      <h1>Rounds</h1>
-      <ul>
-        {rounds.map((round) => (
-          <li key={round.id}>{round.alias || round.id}</li>
-        ))}
-      </ul>
+    <div className="card">
+      <h1 className="card-title">Rounds</h1>
+      <div className="card-body">
+        <ul>
+          {rounds.map((round) => (
+            <li key={round.id}>{round.alias || round.id}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

@@ -78,10 +78,12 @@ const Layout = ({ title, children }: LayoutProps) => {
             ))}
           </nav>
         </div>
-        <div className="flex-grow p-5 overflow-y-auto">
-          <Suspense fallback="Loading...">
-            <main>{children}</main>
-          </Suspense>
+        <div className="flex-grow overflow-y-auto">
+          <main>
+            <Suspense fallback={<span className="text-2xl text-white">Loading...</span>}>
+              {children}
+            </Suspense>
+          </main>
         </div>
       </div>
     </>

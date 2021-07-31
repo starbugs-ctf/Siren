@@ -29,15 +29,17 @@ const Tasks: BlitzPage = () => {
   const [tasks] = useQuery(getAllTasksWithRelation, null)
 
   return (
-    <div>
-      <h1>Tasks</h1>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            Task {task.id} {task.exploit.problem.slug} {task.team.slug}
-          </li>
-        ))}
-      </ul>
+    <div className="card">
+      <h1 className="card-title">Tasks</h1>
+      <div className="card-body">
+        <ul>
+          {tasks.map((task) => (
+            <li key={task.id}>
+              Task {task.id} {task.exploit.problem.slug} {task.team.slug}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

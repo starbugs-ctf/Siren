@@ -4,8 +4,11 @@ import RoundDashboard from "app/components/RoundDashboard"
 
 const Home: BlitzPage = () => {
   return (
-    <div>
-      <RoundDashboard round={100} />
+    <div className="card">
+      <h1 className="card-title">Dashboard</h1>
+      <div className="card-body">
+        <RoundDashboard round={100} />
+      </div>
     </div>
   )
 }

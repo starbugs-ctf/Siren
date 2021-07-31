@@ -54,11 +54,13 @@ const Problems: BlitzPage = () => {
   const [problems] = useQuery(getAllProblems, null)
 
   return (
-    <div>
-      <h1>Problems</h1>
-      {problems.map((problem) => (
-        <Problem key={problem.id} problemId={problem.id} />
-      ))}
+    <div className="card">
+      <h1 className="card-title">Problems</h1>
+      <div className="card-body">
+        {problems.map((problem) => (
+          <Problem key={problem.id} problemId={problem.id} />
+        ))}
+      </div>
     </div>
   )
 }

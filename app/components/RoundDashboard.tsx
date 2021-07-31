@@ -31,7 +31,7 @@ export const RoundDashboard = (props: RoundDashboardProps) => {
     <table className="dashboard">
       <thead>
         <tr>
-          <th>
+          <th className="border border-gray-400">
             <RoundDisplay round={props.round} />
           </th>
           {problems.map((problem) => (
