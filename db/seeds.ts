@@ -46,8 +46,8 @@ const FLAG_STATUS = [
 const createTeams = async () => {
   await db.team.create({
     data: {
-      name: "StarBugs",
-      slug: "starbugs",
+      name: "A*0*E",
+      slug: "a0e",
       aux: "1",
     },
   })
@@ -62,17 +62,89 @@ const createTeams = async () => {
 
   await db.team.create({
     data: {
-      name: "Samurai",
-      slug: "samurai",
+      name: "HITCON ⚔ Balsn",
+      slug: "hitcon-balsn",
       aux: "3",
     },
   })
 
   await db.team.create({
     data: {
-      name: "Perfect ⚔️ Guesser",
-      slug: "perfect-guesser",
+      name: "Tea Deliverers",
+      slug: "tea-deliverers",
       aux: "4",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "More Bush Smoked Whackers",
+      slug: "more-bush-smoked-whackers",
+      aux: "5",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "侍",
+      slug: "samurai",
+      aux: "6",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "Shellphish",
+      slug: "shellphish",
+      aux: "7",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "CyKor",
+      slug: "cykor",
+      aux: "8",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "/bin/tw",
+      slug: "bin-tw",
+      aux: "9",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "NorseCode",
+      slug: "norse-code",
+      aux: "10",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "Star-Bugs",
+      slug: "starbugs",
+      aux: "11",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "koreanbadass",
+      slug: "koreanbadass",
+      aux: "12",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "mhackeroni",
+      slug: "mhackeroni",
+      aux: "13",
     },
   })
 
@@ -80,15 +152,23 @@ const createTeams = async () => {
     data: {
       name: "r3kapig",
       slug: "r3kapig",
-      aux: "5",
+      aux: "14",
     },
   })
 
   await db.team.create({
     data: {
-      name: "DiceGang",
-      slug: "dicegang",
-      aux: "6",
+      name: "RPISEC",
+      slug: "rpisec",
+      aux: "15",
+    },
+  })
+
+  await db.team.create({
+    data: {
+      name: "pasten",
+      slug: "pasten",
+      aux: "16",
     },
   })
 }
@@ -96,25 +176,57 @@ const createTeams = async () => {
 const createProblems = async () => {
   await db.problem.create({
     data: {
-      name: "Baby",
-      slug: "baby",
+      name: "parallel-af",
+      slug: "parallel-af",
       aux: "8001",
     },
   })
 
   await db.problem.create({
     data: {
-      name: "Easy",
-      slug: "easy",
+      name: "rorschach",
+      slug: "rorschach",
       aux: "8002",
     },
   })
 
   await db.problem.create({
     data: {
-      name: "Hard",
-      slug: "hard",
+      name: "rhg",
+      slug: "rhg",
       aux: "8003",
+    },
+  })
+
+  await db.problem.create({
+    data: {
+      name: "nooode",
+      slug: "nooode",
+      aux: "8004",
+    },
+  })
+
+  await db.problem.create({
+    data: {
+      name: "bdooos",
+      slug: "bdooos",
+      aux: "8005",
+    },
+  })
+
+  await db.problem.create({
+    data: {
+      name: "sloootmachine",
+      slug: "sloootmachine",
+      aux: "8006",
+    },
+  })
+
+  await db.problem.create({
+    data: {
+      name: "gameboooy",
+      slug: "gameboooy",
+      aux: "8007",
     },
   })
 }
@@ -126,7 +238,6 @@ const createRounds = async () => {
     const todayStart = addDays(firstDayStart, dayOffset)
     const todayEnd = addHours(todayStart, END_HOUR - START_HOUR)
 
-    // last day: 2.5 minutes
     const roundDurationSeconds = dayToRoundDurationSeconds(dayOffset)
 
     let rounds: Round[] = []
@@ -148,12 +259,12 @@ const createExploits = async () => {
   const problems = await db.problem.findMany()
 
   for (let problem of problems) {
-    const exploitCount = Chance.integer({ min: 2, max: 5 })
+    const exploitCount = Chance.integer({ min: 1, max: 3 })
     for (let i = 0; i < exploitCount; i++) {
       await db.exploit.create({
         data: {
-          name: `${problem.slug}_exploit_${i}`,
-          key: `${problem.slug}_exploit_${i}`,
+          name: `${problem.slug}_${i}`,
+          key: `${problem.slug}_${i}`,
           problemId: problem.id,
         },
       })
