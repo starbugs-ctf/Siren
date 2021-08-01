@@ -12,6 +12,12 @@ export const RoundTaskList = (props: RoundTaskListProps) => {
     if (first.exploit.problemId != second.exploit.problemId) {
       return first.exploit.problemId - second.exploit.problemId
     }
+    if (first.exploitId != second.exploitId) {
+      return first.exploitId - second.exploitId
+    }
+    if (first.teamId != second.teamId) {
+      return first.teamId - second.teamId
+    }
     return first.createdAt.getTime() - second.createdAt.getTime()
   })
 
@@ -23,6 +29,7 @@ export const RoundTaskList = (props: RoundTaskListProps) => {
           <tr>
             <th className="text-left">Task #</th>
             <th className="text-left">Problem</th>
+            <th className="text-left">Exploit</th>
             <th className="text-left">Target</th>
             <th className="text-left">Status</th>
           </tr>
@@ -33,6 +40,7 @@ export const RoundTaskList = (props: RoundTaskListProps) => {
               <tr key={task.id}>
                 <td>{task.id}</td>
                 <td>{task.exploit.problem.name}</td>
+                <td>{task.exploit.name}</td>
                 <td>{task.team.name}</td>
                 <td>{task.flagSubmission?.submissionResult || task.status}</td>
               </tr>
