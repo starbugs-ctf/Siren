@@ -151,11 +151,11 @@ table.data thead {
 }
 
 table.data th {
-  @apply px-6 py-2;
+  @apply px-3 py-2;
 }
 
 table.data td {
-  @apply px-6 py-2;
+  @apply px-3 py-2;
 }
 
 table.data tbody tr {
