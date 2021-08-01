@@ -75,6 +75,7 @@ main {
 /* Dashboard */
 table.dashboard {
   @apply border-collapse;
+  margin-right: 128px;
 }
 
 table.dashboard th.rotate {

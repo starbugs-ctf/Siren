@@ -8,7 +8,7 @@ const RoundDetail: BlitzPage = () => {
   const roundId = useParam("roundId", "number")!
 
   return (
-    <div className="flex flex-wrap flex-column gap-x-12 gap-y-8">
+    <div className="flex flex-wrap flex-column gap-8">
       <div className="flex-auto">
         <div className="card">
           <div className="card-title">
