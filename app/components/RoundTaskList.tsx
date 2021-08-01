@@ -1,5 +1,6 @@
-import { useQuery } from "blitz"
+import { Link, Routes, useQuery } from "blitz"
 import getTasksForRound from "app/queries/getTasksForRound"
+import { FlagIcon } from "@heroicons/react/outline"
 
 type RoundTaskListProps = {
   round: number
@@ -31,18 +32,30 @@ export const RoundTaskList = (props: RoundTaskListProps) => {
             <th className="text-left">Problem</th>
             <th className="text-left">Exploit</th>
             <th className="text-left">Target</th>
-            <th className="text-left">Status</th>
+            <th className="text-center">Status</th>
           </tr>
         </thead>
         <tbody>
           {tasks.map((task) => {
             return (
               <tr key={task.id}>
-                <td>{task.id}</td>
+                <td>
+                  <Link href={Routes.TaskDetail({ taskId: task.id })}>
+                    <a>{task.id}</a>
+                  </Link>
+                </td>
                 <td>{task.exploit.problem.name}</td>
                 <td>{task.exploit.name}</td>
                 <td>{task.team.name}</td>
-                <td>{task.flagSubmission?.submissionResult || task.status}</td>
+                <td className="text-center">
+                  {task.flagSubmission ? (
+                    <span className="inline-flex items-center">
+                      {task.flagSubmission.submissionResult} <FlagIcon className="h-4 w-4 ml-1" />
+                    </span>
+                  ) : (
+                    task.status
+                  )}
+                </td>
               </tr>
             )
           })}

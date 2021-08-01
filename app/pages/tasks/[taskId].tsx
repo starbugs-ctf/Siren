@@ -1,0 +1,102 @@
+import { BlitzPage, Link, NotFoundError, Routes, useParam, useQuery } from "blitz"
+import Layout from "app/core/layouts/Layout"
+import getTask from "app/queries/getTask"
+import { format } from "date-fns"
+
+const DATE_FORMAT = "MMM dd HH:mm:ss"
+
+type TaskViewProps = {
+  taskId: number
+}
+
+const TaskView = (props: TaskViewProps) => {
+  const [task] = useQuery(getTask, props.taskId)
+
+  if (!task) {
+    throw new NotFoundError("Task not found")
+  }
+
+  return (
+    <div className="task-detail">
+      <p>
+        Created at {format(task.createdAt, DATE_FORMAT)}{" "}
+        {task.roundId ? (
+          <>
+            (
+            <Link href={Routes.RoundDetail({ roundId: task.roundId })}>
+              <a>Round {task.roundId}</a>
+            </Link>
+            )
+          </>
+        ) : (
+          ""
+        )}
+      </p>
+
+      <h2 className="header">Target</h2>
+      <p>
+        <span className="label">Problem</span> {task.exploit.problem.name}
+      </p>
+      <p>
+        <span className="label">Exploit</span> {task.exploit.name}
+      </p>
+      <p>
+        <span className="label">Team</span> {task.team.name}
+      </p>
+
+      <h2 className="header">Flag</h2>
+      {task.flagSubmission ? (
+        <>
+          <p>
+            <span className="label">Flag</span> {task.flagSubmission.flag}
+          </p>
+          <p>
+            <span className="label">Result</span> {task.flagSubmission.submissionResult}
+            <small>{task.flagSubmission.message}</small>
+          </p>
+        </>
+      ) : (
+        <p>Did not generate any flag</p>
+      )}
+
+      <h2 className="header">Status</h2>
+      <p>
+        <span className="label">Status</span> {task.status}
+        <small>{task.statusMessage}</small>
+      </p>
+      <div className="flex flex-row">
+        <div className="flex-1 m-3">
+          <h3 className="bg-gray-100 text-gray-700 px-3 py-1 font-semibold">stdout</h3>
+          <div className="px-4 py-2 border">
+            <code>{task.stdout}</code>
+          </div>
+        </div>
+        <div className="flex-1 m-3">
+          <h3 className="bg-gray-100 text-gray-700 px-3 py-1 font-semibold">stderr</h3>
+          <div className="px-4 py-2 border">
+            <code>{task.stderr}</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const TaskDetail: BlitzPage = () => {
+  const taskId = useParam("taskId", "number")!
+
+  return (
+    <div className="card">
+      <div className="card-title">
+        <h1>Task {taskId}</h1>
+      </div>
+      <div className="card-body">
+        <TaskView taskId={taskId} />
+      </div>
+    </div>
+  )
+}
+
+TaskDetail.getLayout = (page) => <Layout title="Tasks">{page}</Layout>
+
+export default TaskDetail
