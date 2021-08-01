@@ -30,7 +30,9 @@ const Tasks: BlitzPage = () => {
 
   return (
     <div className="card">
-      <h1 className="card-title">Tasks</h1>
+      <div className="card-title">
+        <h1>Tasks</h1>
+      </div>
       <div className="card-body">
         <ul>
           {tasks.map((task) => (

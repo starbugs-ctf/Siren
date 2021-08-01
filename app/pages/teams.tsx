@@ -28,7 +28,9 @@ const Teams: BlitzPage = () => {
 
   return (
     <div className="card">
-      <h1 className="card-title">Teams</h1>
+      <div className="card-title">
+        <h1>Teams</h1>
+      </div>
       <div className="card-body">
         <ul>
           {teams.map((team) => (

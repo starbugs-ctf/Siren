@@ -66,7 +66,9 @@ const RoundTable = () => {
 const Rounds: BlitzPage = () => {
   return (
     <div className="card">
-      <h1 className="card-title">Rounds</h1>
+      <div className="card-title">
+        <h1>Rounds</h1>
+      </div>
       <div className="card-body">
         <RoundTable />
       </div>

@@ -55,7 +55,9 @@ const Problems: BlitzPage = () => {
 
   return (
     <div className="card">
-      <h1 className="card-title">Problems</h1>
+      <div className="card-title">
+        <h1>Problems</h1>
+      </div>
       <div className="card-body">
         {problems.map((problem) => (
           <Problem key={problem.id} problemId={problem.id} />
