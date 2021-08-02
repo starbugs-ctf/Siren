@@ -4,11 +4,11 @@
 
 @layer base {
   h1 {
-    @apply text-2xl font-bold;
+    @apply text-2xl font-semibold;
   }
 
   h2 {
-    @apply text-xl font-bold;
+    @apply text-xl font-semibold;
   }
 
   a {
@@ -178,4 +178,9 @@ table.data tbody tr:hover {
 
 .task-detail small {
   @apply text-gray-600 ml-2;
+}
+
+/* RoundNow */
+.round-now {
+  @apply bg-blue-100 text-blue-900 border text-center mb-4 py-2;
 }
