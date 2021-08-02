@@ -26,6 +26,7 @@ const RoundNow = ({ lastRound, nextRound }: RoundNowProps) => {
   const [now, setNow] = useState(new Date())
 
   useEffect(() => {
+    // Refresh every second
     const interval = setInterval(() => setNow(new Date()), 1000)
     return () => {
       clearInterval(interval)
@@ -82,14 +83,22 @@ const Home: BlitzPage = () => {
   const [rounds] = useQuery(getAllRounds, null)
   const [roundRanges] = useQuery(getAllRoundRanges, null)
 
+  const [now, setNow] = useState(new Date())
+
+  useEffect(() => {
+    // Refresh every 20 seconds
+    const interval = setInterval(() => setNow(new Date()), 20 * 1000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+
   const roundData = rounds.map((round) => {
     return {
       round,
       duration: getRoundDuration(roundRanges, round.id),
     }
   })
-
-  const now = new Date()
 
   let lastRound: null | RoundData = null
   let nextRound: null | RoundData = null
