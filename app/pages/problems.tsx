@@ -13,6 +13,7 @@ import {
 import Layout from "app/core/layouts/Layout"
 import getAllProblems from "app/queries/getAllProblems"
 import getProblemWithExploits from "app/queries/getProblemWithExploits"
+import KeywordChip from "app/components/KeywordChip"
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const queryClient = new QueryClient()
@@ -42,7 +43,15 @@ const Problem = ({ problemId }: ProblemProps) => {
 
   return (
     <>
-      <h2>{problem.name}</h2>
+      {problem.enabled ? (
+        <h2>{problem.name}</h2>
+      ) : (
+        <h2>
+          <span className="text-gray-300 mr-2">{problem.name}</span>
+          <KeywordChip text="DISABLED" />
+        </h2>
+      )}
+
       <ul className="mb-4">
         {problem.exploits.map((exploit) => (
           <li key={exploit.id}>

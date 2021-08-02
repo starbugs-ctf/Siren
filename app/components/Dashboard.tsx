@@ -5,13 +5,14 @@ import { GetTasksForRoundReturnType } from "app/queries/getTasksForRound"
 
 type RotatedHeaderProps = {
   children?: ReactNode
+  disabled?: boolean
 }
 
 export const RotatedHeader = (props: RotatedHeaderProps) => {
   return (
     <th className="rotate">
       <div>
-        <span>{props.children}</span>
+        <span className={props.disabled ? "text-gray-300" : ""}>{props.children}</span>
       </div>
     </th>
   )

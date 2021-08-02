@@ -35,7 +35,9 @@ export const RoundDashboard = (props: RoundDashboardProps) => {
             <RoundDisplay round={props.round} />
           </th>
           {problems.map((problem) => (
-            <RotatedHeader key={problem.slug}>{problem.name}</RotatedHeader>
+            <RotatedHeader key={problem.slug} disabled={!problem.enabled}>
+              {problem.name}
+            </RotatedHeader>
           ))}
         </tr>
       </thead>

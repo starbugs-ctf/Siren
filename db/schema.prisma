@@ -42,6 +42,8 @@ model Team {
 model Problem {
   id Int @id @default(autoincrement())
 
+  enabled Boolean @default(true)
+
   name String
   slug String @unique
   aux  String
@@ -53,6 +55,7 @@ model Exploit {
   id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
+  enabled   Boolean  @default(true)
 
   // name: human readable name
   name String
