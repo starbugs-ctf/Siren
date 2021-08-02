@@ -7,6 +7,8 @@ import {
   dehydrate,
   useQuery,
   NotFoundError,
+  Link,
+  Routes,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getAllProblems from "app/queries/getAllProblems"
@@ -43,7 +45,12 @@ const Problem = ({ problemId }: ProblemProps) => {
       <h2>{problem.name}</h2>
       <ul className="mb-4">
         {problem.exploits.map((exploit) => (
-          <li key={exploit.id}>{exploit.name}</li>
+          <li key={exploit.id}>
+            <Link href={Routes.ExploitDetail({ exploitId: exploit.id })}>
+              <a>{exploit.name}</a>
+            </Link>
+            <small className="side">{exploit.key}</small>
+          </li>
         ))}
       </ul>
     </>
@@ -67,6 +74,6 @@ const Problems: BlitzPage = () => {
   )
 }
 
-Problems.getLayout = (page) => <Layout title="Problems">{page}</Layout>
+Problems.getLayout = (page) => <Layout title="Problems & Exploits">{page}</Layout>
 
 export default Problems

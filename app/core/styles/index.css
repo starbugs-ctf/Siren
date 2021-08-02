@@ -12,14 +12,15 @@
   }
 
   a {
-    @apply underline text-blue-500 hover:text-blue-700;
+    @apply underline text-blue-600 hover:text-blue-800;
   }
 
   th {
     @apply font-semibold;
   }
 
-  ul {
+  small.side {
+    @apply text-gray-600 ml-2;
   }
 }
 
@@ -170,17 +171,13 @@ table.data tbody tr:hover {
   @apply bg-gray-100;
 }
 
-/* TaskDetail */
-.task-detail .header {
+/* Task/Exploit Detail */
+.detail .header {
   @apply text-xl font-semibold border-b mt-4 mb-2;
 }
 
-.task-detail span.label {
+.detail span.label {
   @apply inline-block font-semibold w-16 mr-2 text-right;
-}
-
-.task-detail small {
-  @apply text-gray-600 ml-2;
 }
 
 /* RoundNow */

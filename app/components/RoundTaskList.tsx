@@ -46,7 +46,11 @@ export const RoundTaskList = (props: RoundTaskListProps) => {
                   </Link>
                 </td>
                 <td>{task.exploit.problem.name}</td>
-                <td>{task.exploit.name}</td>
+                <td>
+                  <Link href={Routes.ExploitDetail({ exploitId: task.exploit.id })}>
+                    <a>{task.exploit.name}</a>
+                  </Link>
+                </td>
                 <td>{task.team.name}</td>
                 <td className="text-center">
                   {task.flagSubmission ? (

@@ -1,7 +1,7 @@
 import { BlitzPage, Link, NotFoundError, Routes, useParam, useQuery } from "blitz"
+import { format } from "date-fns"
 import Layout from "app/core/layouts/Layout"
 import getTask from "app/queries/getTask"
-import { format } from "date-fns"
 import KeywordChip from "app/components/KeywordChip"
 
 const DATE_FORMAT = "MMM dd HH:mm:ss"
@@ -18,7 +18,7 @@ const TaskView = (props: TaskViewProps) => {
   }
 
   return (
-    <div className="task-detail">
+    <div className="detail">
       <p>
         Created at {format(task.createdAt, DATE_FORMAT)}{" "}
         {task.roundId ? (
@@ -54,7 +54,7 @@ const TaskView = (props: TaskViewProps) => {
           <p>
             <span className="label">Result</span>
             <KeywordChip text={task.flagSubmission.submissionResult} />
-            <small>{task.flagSubmission.message}</small>
+            <small className="side">{task.flagSubmission.message}</small>
           </p>
         </>
       ) : (
@@ -65,7 +65,7 @@ const TaskView = (props: TaskViewProps) => {
       <p>
         <span className="label">Status</span>
         <KeywordChip text={task.status} />
-        <small>{task.statusMessage}</small>
+        <small className="side">{task.statusMessage}</small>
       </p>
       <div className="flex flex-row">
         <div className="flex-1 m-3">
