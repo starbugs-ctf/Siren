@@ -3,8 +3,7 @@ import { format } from "date-fns"
 import Layout from "app/core/layouts/Layout"
 import getTask from "app/queries/getTask"
 import KeywordChip from "app/components/KeywordChip"
-
-const DATE_FORMAT = "MMM dd HH:mm:ss"
+import { DATE_FORMAT } from "app/timeUtil"
 
 type TaskViewProps = {
   taskId: number
@@ -36,20 +35,26 @@ const TaskView = (props: TaskViewProps) => {
 
       <h2 className="header">Target</h2>
       <p>
-        <span className="label">Problem</span> {task.exploit.problem.name}
+        <span className="label">Problem</span>
+        {task.exploit.problem.name}
       </p>
       <p>
-        <span className="label">Exploit</span> {task.exploit.name}
+        <span className="label">Exploit</span>
+        <Link href={Routes.ExploitDetail({ exploitId: task.exploitId })}>
+          <a>{task.exploit.name}</a>
+        </Link>
       </p>
       <p>
-        <span className="label">Team</span> {task.team.name}
+        <span className="label">Team</span>
+        {task.team.name}
       </p>
 
       <h2 className="header">Flag</h2>
       {task.flagSubmission ? (
         <>
           <p>
-            <span className="label">Flag</span> {task.flagSubmission.flag}
+            <span className="label">Flag</span>
+            {task.flagSubmission.flag}
           </p>
           <p>
             <span className="label">Result</span>

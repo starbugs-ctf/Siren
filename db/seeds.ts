@@ -261,10 +261,13 @@ const createExploits = async () => {
   for (let problem of problems) {
     const exploitCount = Chance.integer({ min: 1, max: 3 })
     for (let i = 0; i < exploitCount; i++) {
+      const exploitName = Chance.word()
+      const hashLike = Math.floor(Math.random() * 0x1000000000000).toString(16)
+
       await db.exploit.create({
         data: {
-          name: `${problem.slug}_${i}`,
-          key: `${problem.slug}_${i}`,
+          name: exploitName,
+          key: `${exploitName}-${hashLike}`,
           problemId: problem.id,
         },
       })

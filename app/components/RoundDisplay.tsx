@@ -2,12 +2,11 @@ import { useQuery } from "blitz"
 import { format } from "date-fns"
 import getAllRoundRanges from "app/queries/getAllRoundRanges"
 import { getRoundDuration } from "app/roundUtil"
+import { DATE_FORMAT } from "app/timeUtil"
 
 type RoundDisplayProps = {
   round: number
 }
-
-const DATE_FORMAT = "MMM dd HH:mm:ss"
 
 export const RoundDisplay = (props: RoundDisplayProps) => {
   const [roundRanges] = useQuery(getAllRoundRanges, null)

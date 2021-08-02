@@ -52,6 +52,8 @@ model Problem {
 model Exploit {
   id Int @id @default(autoincrement())
 
+  createdAt DateTime @default(now())
+
   // name: human readable name
   name String
   // key: machine specified name (e.g., with hash)

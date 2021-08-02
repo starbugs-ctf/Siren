@@ -177,7 +177,7 @@ table.data tbody tr:hover {
 }
 
 .detail span.label {
-  @apply inline-block font-semibold w-16 mr-2 text-right;
+  @apply inline-block font-semibold w-16 mr-3 text-right;
 }
 
 /* RoundNow */
