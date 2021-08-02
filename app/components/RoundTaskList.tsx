@@ -1,6 +1,7 @@
 import { Link, Routes, useQuery } from "blitz"
 import getTasksForRound from "app/queries/getTasksForRound"
 import { FlagIcon } from "@heroicons/react/outline"
+import KeywordChip from "./KeywordChip"
 
 type RoundTaskListProps = {
   round: number
@@ -49,11 +50,12 @@ export const RoundTaskList = (props: RoundTaskListProps) => {
                 <td>{task.team.name}</td>
                 <td className="text-center">
                   {task.flagSubmission ? (
-                    <span className="inline-flex items-center">
-                      {task.flagSubmission.submissionResult} <FlagIcon className="h-4 w-4 ml-1" />
-                    </span>
+                    <KeywordChip
+                      text={task.flagSubmission.submissionResult}
+                      icon={<FlagIcon className="h-4 w-4 ml-1" />}
+                    />
                   ) : (
-                    task.status
+                    <KeywordChip text={task.status} />
                   )}
                 </td>
               </tr>
