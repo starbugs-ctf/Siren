@@ -41,7 +41,7 @@ const NAV_BUTTONS: ButtonMetadata[] = [
     redirect: "/rounds",
   },
   {
-    text: "Problems",
+    text: "Problems & Exploits",
     Icon: ClipboardListIcon,
     isActive: (router: BlitzRouter) => router.asPath.startsWith("/problems"),
     redirect: "/problems",

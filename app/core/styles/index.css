@@ -18,6 +18,9 @@
   th {
     @apply font-semibold;
   }
+
+  ul {
+  }
 }
 
 /* Nav bar */

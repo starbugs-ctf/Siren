@@ -41,7 +41,7 @@ const Problem = ({ problemId }: ProblemProps) => {
   return (
     <>
       <h2>{problem.name}</h2>
-      <ul>
+      <ul className="mb-4">
         {problem.exploits.map((exploit) => (
           <li key={exploit.id}>{exploit.name}</li>
         ))}
@@ -56,7 +56,7 @@ const Problems: BlitzPage = () => {
   return (
     <div className="card">
       <div className="card-title">
-        <h1>Problems</h1>
+        <h1>Problems & Exploits</h1>
       </div>
       <div className="card-body">
         {problems.map((problem) => (
