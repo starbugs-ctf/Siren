@@ -1,20 +1,26 @@
 import { Ctx } from "blitz"
-import db from "db"
+import db, { Prisma } from "db"
+
+export const TASK_INCLUDE = {
+  team: true,
+  exploit: {
+    include: {
+      problem: true,
+    },
+  },
+  flagSubmission: true,
+}
+
+export type TaskQueryReturnType = Prisma.TaskGetPayload<{
+  include: typeof TASK_INCLUDE
+}>
 
 export default async function getTask(taskId: number, ctx: Ctx) {
   const tasks = await db.task.findUnique({
     where: {
       id: taskId,
     },
-    include: {
-      team: true,
-      exploit: {
-        include: {
-          problem: true,
-        },
-      },
-      flagSubmission: true,
-    },
+    include: TASK_INCLUDE,
   })
 
   return tasks

@@ -1,8 +1,7 @@
 import { BlitzPage, useParam } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import RoundDashboard from "app/components/RoundDashboard"
-import BackButton from "app/components/BackButton"
-import { RoundTaskList } from "app/components/RoundTaskList"
+import { RoundTaskList } from "app/components/TaskList"
 
 const RoundDetail: BlitzPage = () => {
   const roundId = useParam("roundId", "number")!

@@ -1,5 +1,6 @@
 import { Ctx } from "blitz"
 import db, { Prisma } from "db"
+import { TASK_INCLUDE } from "./getTask"
 
 export type GetTasksForRoundReturnType = Array<
   Prisma.TaskGetPayload<{
@@ -20,15 +21,7 @@ export default async function getTasksForRound(round: number, ctx: Ctx) {
     where: {
       roundId: round,
     },
-    include: {
-      team: true,
-      exploit: {
-        include: {
-          problem: true,
-        },
-      },
-      flagSubmission: true,
-    },
+    include: TASK_INCLUDE,
   })
 
   return tasks

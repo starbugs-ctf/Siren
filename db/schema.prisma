@@ -73,8 +73,8 @@ model Task {
   statusMessage String
   createdAt     DateTime @default(now())
 
-  roundCache Round? @relation(fields: [roundId], references: [id])
-  roundId    Int?
+  round   Round @relation(fields: [roundId], references: [id])
+  roundId Int
 
   stdout String?
   stderr String?

@@ -1,32 +1,23 @@
-import {
-  BlitzPage,
-  GetServerSidePropsContext,
-  QueryClient,
-  getQueryKey,
-  invokeWithMiddleware,
-  dehydrate,
-  useQuery,
-} from "blitz"
+import { BlitzPage, useRouter, usePaginatedQuery } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getAllTasksWithRelation from "app/queries/getAllTasksWIthRelation"
+import getPaginatedTasks from "app/queries/getTasksPaginated"
+import { TaskList } from "app/components/TaskList"
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const queryClient = new QueryClient()
-
-  const queryKey = getQueryKey(getAllTasksWithRelation, null)
-  await queryClient.prefetchQuery(queryKey, () =>
-    invokeWithMiddleware(getAllTasksWithRelation, null, ctx)
-  )
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  }
-}
+const ITEMS_PER_PAGE = 50
 
 const Tasks: BlitzPage = () => {
-  const [tasks] = useQuery(getAllTasksWithRelation, null)
+  const router = useRouter()
+  const page = Number(router.query.page) || 0
+  const [{ tasks, hasMore }] = usePaginatedQuery(getPaginatedTasks, {
+    orderBy: {
+      id: "desc",
+    },
+    skip: ITEMS_PER_PAGE * page,
+    take: ITEMS_PER_PAGE,
+  })
+
+  const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
+  const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
   return (
     <div className="card">
@@ -34,13 +25,18 @@ const Tasks: BlitzPage = () => {
         <h1>Tasks</h1>
       </div>
       <div className="card-body">
-        <ul>
-          {tasks.map((task) => (
-            <li key={task.id}>
-              Task {task.id} {task.exploit.problem.slug} {task.team.slug}
-            </li>
-          ))}
-        </ul>
+        <div className="inline-block">
+          <TaskList tasks={tasks} showRound={true} />
+          <div className="inline-flex flex-row items-center w-full mt-2">
+            <button disabled={page === 0} className="btn flex-grow-0" onClick={goToPreviousPage}>
+              Previous
+            </button>
+            <span className="flex-grow text-center">Page {page}</span>
+            <button disabled={!hasMore} className="btn flex-grow-0" onClick={goToNextPage}>
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )

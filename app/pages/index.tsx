@@ -5,7 +5,7 @@ import { Round } from "db"
 
 import Layout from "app/core/layouts/Layout"
 import RoundDashboard from "app/components/RoundDashboard"
-import { RoundTaskList } from "app/components/RoundTaskList"
+import { RoundTaskList } from "app/components/TaskList"
 import getAllRoundRanges from "app/queries/getAllRoundRanges"
 import getAllRounds from "app/queries/getAllRounds"
 import { getRoundDuration, RoundDuration } from "app/roundUtil"

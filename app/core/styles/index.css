@@ -22,6 +22,14 @@
   small.side {
     @apply text-gray-600 ml-2;
   }
+
+  .btn {
+    @apply bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  }
+
+  .btn:disabled {
+    @apply bg-blue-400 text-white opacity-50 font-bold py-2 px-4 rounded cursor-not-allowed;
+  }
 }
 
 /* Nav bar */
@@ -152,11 +160,11 @@ table.data thead {
 }
 
 table.data th {
-  @apply px-3 py-2;
+  @apply px-3 py-1;
 }
 
 table.data td {
-  @apply px-3 py-2;
+  @apply px-3 py-1;
 }
 
 table.data tbody tr {
