@@ -7,13 +7,12 @@ import {
   dehydrate,
   useQuery,
   NotFoundError,
-  Link,
-  Routes,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getAllProblems from "app/queries/getAllProblems"
 import getProblemWithExploits from "app/queries/getProblemWithExploits"
 import KeywordChip from "app/components/KeywordChip"
+import { ExploitLink } from "app/components/ExploitLink"
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const queryClient = new QueryClient()
@@ -55,9 +54,7 @@ const Problem = ({ problemId }: ProblemProps) => {
       <ul className="mb-4">
         {problem.exploits.map((exploit) => (
           <li key={exploit.id}>
-            <Link href={Routes.ExploitDetail({ exploitId: exploit.id })}>
-              <a>{exploit.name}</a>
-            </Link>
+            <ExploitLink exploit={exploit} />
             <small className="side">{exploit.key}</small>
           </li>
         ))}

@@ -15,6 +15,10 @@
     @apply underline text-blue-600 hover:text-blue-800;
   }
 
+  a.secondary {
+    @apply underline text-gray-400 hover:text-gray-500;
+  }
+
   th {
     @apply font-semibold;
   }

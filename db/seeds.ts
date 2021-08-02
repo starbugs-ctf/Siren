@@ -174,11 +174,14 @@ const createTeams = async () => {
 }
 
 const createProblems = async () => {
+  const PROBLEM_ENABLED_PROBABILITY = 0.7
+
   await db.problem.create({
     data: {
       name: "parallel-af",
       slug: "parallel-af",
       aux: "8001",
+      enabled: Math.random() < PROBLEM_ENABLED_PROBABILITY,
     },
   })
 
@@ -187,6 +190,7 @@ const createProblems = async () => {
       name: "rorschach",
       slug: "rorschach",
       aux: "8002",
+      enabled: Math.random() < PROBLEM_ENABLED_PROBABILITY,
     },
   })
 
@@ -195,6 +199,7 @@ const createProblems = async () => {
       name: "rhg",
       slug: "rhg",
       aux: "8003",
+      enabled: Math.random() < PROBLEM_ENABLED_PROBABILITY,
     },
   })
 
@@ -203,6 +208,7 @@ const createProblems = async () => {
       name: "nooode",
       slug: "nooode",
       aux: "8004",
+      enabled: Math.random() < PROBLEM_ENABLED_PROBABILITY,
     },
   })
 
@@ -211,6 +217,7 @@ const createProblems = async () => {
       name: "bdooos",
       slug: "bdooos",
       aux: "8005",
+      enabled: Math.random() < PROBLEM_ENABLED_PROBABILITY,
     },
   })
 
@@ -219,6 +226,7 @@ const createProblems = async () => {
       name: "sloootmachine",
       slug: "sloootmachine",
       aux: "8006",
+      enabled: Math.random() < PROBLEM_ENABLED_PROBABILITY,
     },
   })
 
@@ -227,6 +235,7 @@ const createProblems = async () => {
       name: "gameboooy",
       slug: "gameboooy",
       aux: "8007",
+      enabled: Math.random() < PROBLEM_ENABLED_PROBABILITY,
     },
   })
 }
@@ -256,21 +265,28 @@ const createRounds = async () => {
 }
 
 const createExploits = async () => {
+  const EXPLOIT_ENABLED_PROBABILITY = 0.5
+
   const problems = await db.problem.findMany()
 
   for (let problem of problems) {
     const exploitCount = Chance.integer({ min: 1, max: 3 })
     for (let i = 0; i < exploitCount; i++) {
       const exploitName = Chance.word()
-      const hashLike = Math.floor(Math.random() * 0x1000000000000).toString(16)
+      const versionCount = Chance.integer({ min: 1, max: 5 })
 
-      await db.exploit.create({
-        data: {
-          name: exploitName,
-          key: `${exploitName}-${hashLike}`,
-          problemId: problem.id,
-        },
-      })
+      for (let j = 0; j < versionCount; j++) {
+        const hashLike = Math.floor(Math.random() * 0x1000000000000).toString(16)
+
+        await db.exploit.create({
+          data: {
+            name: exploitName,
+            key: `${exploitName}-${hashLike}`,
+            enabled: Math.random() < EXPLOIT_ENABLED_PROBABILITY,
+            problemId: problem.id,
+          },
+        })
+      }
     }
   }
 }
