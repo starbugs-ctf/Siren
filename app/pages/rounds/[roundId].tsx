@@ -12,7 +12,7 @@ const RoundDetail: BlitzPage = () => {
       <div className="flex-auto">
         <div className="card">
           <div className="card-title">
-            <BackButton />
+            <h1>Dashboard</h1>
           </div>
           <div className="card-body">
             <RoundDashboard round={roundId} />
