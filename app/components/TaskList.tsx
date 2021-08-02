@@ -19,7 +19,7 @@ export const TaskList = (props: TaskListProps) => {
           <th className="text-left">Problem</th>
           <th className="text-left">Exploit</th>
           <th className="text-left">Target</th>
-          <th className="text-center">Status</th>
+          <th className="text-left">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -45,7 +45,7 @@ export const TaskList = (props: TaskListProps) => {
                 </Link>
               </td>
               <td>{task.team.name}</td>
-              <td className="text-center">
+              <td>
                 {task.flagSubmission ? (
                   <KeywordChip
                     text={task.flagSubmission.submissionResult}

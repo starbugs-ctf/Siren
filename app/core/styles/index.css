@@ -160,11 +160,11 @@ table.data thead {
 }
 
 table.data th {
-  @apply px-3 py-1;
+  @apply px-2 py-1;
 }
 
 table.data td {
-  @apply px-3 py-1;
+  @apply px-2 py-1;
 }
 
 table.data tbody tr {
