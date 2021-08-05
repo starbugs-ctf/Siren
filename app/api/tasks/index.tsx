@@ -6,7 +6,7 @@ import * as z from "zod"
 const CreateTaskSchema = z.object({
   createdAt: z.date().optional(),
   roundId: z.number(),
-  exploitId: z.number(),
+  exploitKey: z.string(),
   teamId: z.number(),
 })
 
@@ -37,7 +37,21 @@ const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiRespo
       data: {
         status: "PENDING",
         statusMessage: "",
-        ...args,
+        round: {
+          connect: {
+            id: args.roundId,
+          },
+        },
+        exploit: {
+          connect: {
+            key: args.exploitKey,
+          },
+        },
+        team: {
+          connect: {
+            id: args.teamId,
+          },
+        },
       },
       include: {
         flagSubmission: true,
