@@ -10,7 +10,7 @@ type TaskViewProps = {
 }
 
 export const TaskView = (props: TaskViewProps) => {
-  // suspense false to prvent loading page, make modal happy
+  // suspense false to prevent loading page, make modal happy
   const [task] = useQuery(getTask, props.taskId, { suspense: false })
 
   // before query completes, task will be null

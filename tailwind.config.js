@@ -7,9 +7,7 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {
-      zIndex: ["hover", "active"],
-    },
+    extend: {},
   },
   plugins: [],
 }
