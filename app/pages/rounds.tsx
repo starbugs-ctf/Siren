@@ -13,8 +13,7 @@ import { format } from "date-fns"
 import Layout from "app/core/layouts/Layout"
 import getAllRounds from "app/queries/getAllRounds"
 import getAllRoundRanges from "app/queries/getAllRoundRanges"
-import { getRoundDuration } from "app/roundUtil"
-import { DATE_FORMAT } from "app/timeUtil"
+import { DATE_FORMAT, getRoundDuration } from "app/timeUtil"
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const queryClient = new QueryClient()

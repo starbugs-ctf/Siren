@@ -1,8 +1,7 @@
 import { useQuery } from "blitz"
 import { format } from "date-fns"
 import getAllRoundRanges from "app/queries/getAllRoundRanges"
-import { getRoundDuration } from "app/roundUtil"
-import { DATE_FORMAT } from "app/timeUtil"
+import { DATE_FORMAT, getRoundDuration } from "app/timeUtil"
 
 type RoundDisplayProps = {
   round: number

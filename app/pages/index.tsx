@@ -8,7 +8,7 @@ import RoundDashboard from "app/components/RoundDashboard"
 import { RoundTaskList } from "app/components/TaskList"
 import getAllRoundRanges from "app/queries/getAllRoundRanges"
 import getAllRounds from "app/queries/getAllRounds"
-import { getRoundDuration, RoundDuration } from "app/roundUtil"
+import { getRoundDuration, RoundDuration } from "app/timeUtil"
 
 const HOUR_FORMAT = "MMM dd HH:mm:ss"
 
