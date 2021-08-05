@@ -24,6 +24,7 @@
     ]
   },
   "dependencies": {
+    "@headlessui/react": "1.4.0",
     "@heroicons/react": "1.0.3",
     "@prisma/client": "2.27.0",
     "@types/chance": "1.1.3",

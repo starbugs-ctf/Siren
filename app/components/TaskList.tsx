@@ -1,8 +1,10 @@
+import { useState } from "react"
 import { Link, Routes, useQuery } from "blitz"
 import { FlagIcon } from "@heroicons/react/outline"
 import getTasksForRound from "app/queries/getTasksForRound"
 import { TaskQueryReturnType } from "app/queries/getTask"
 import KeywordChip from "./KeywordChip"
+import TaskModal from "./TaskModal"
 
 type TaskListProps = {
   showRound?: boolean
@@ -10,56 +12,74 @@ type TaskListProps = {
 }
 
 export const TaskList = (props: TaskListProps) => {
+  const [modalState, setModalState] = useState({
+    open: false,
+    taskId: null,
+  })
+  const showModal = (taskId) => {
+    setModalState({
+      open: true,
+      taskId,
+    })
+  }
+  const closeModal = () => {
+    setModalState({
+      open: false,
+      taskId: null,
+    })
+  }
+  const { open, taskId } = modalState
   return (
-    <table className="data">
-      <thead>
-        <tr>
-          <th className="text-left">Task #</th>
-          {props.showRound && <th className="text-left">Round #</th>}
-          <th className="text-left">Problem</th>
-          <th className="text-left">Exploit</th>
-          <th className="text-left">Target</th>
-          <th className="text-left">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.tasks.map((task) => {
-          return (
-            <tr key={task.id}>
-              <td>
-                <Link href={Routes.TaskDetail({ taskId: task.id })}>
-                  <a>{task.id}</a>
-                </Link>
-              </td>
-              {props.showRound && (
+    <>
+      <TaskModal open={open} onClose={closeModal} taskId={taskId}></TaskModal>
+      <table className="data">
+        <thead>
+          <tr>
+            <th className="text-left">Task #</th>
+            {props.showRound && <th className="text-left">Round #</th>}
+            <th className="text-left">Problem</th>
+            <th className="text-left">Exploit</th>
+            <th className="text-left">Target</th>
+            <th className="text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.tasks.map((task) => {
+            return (
+              <tr key={task.id}>
                 <td>
-                  <Link href={Routes.RoundDetail({ roundId: task.roundId })}>
-                    <a>Round {task.roundId}</a>
+                  <a onClick={(e) => showModal(task.id)}>{task.id}</a>
+                </td>
+                {props.showRound && (
+                  <td>
+                    <Link href={Routes.RoundDetail({ roundId: task.roundId })}>
+                      <a>Round {task.roundId}</a>
+                    </Link>
+                  </td>
+                )}
+                <td>{task.exploit.problem.name}</td>
+                <td>
+                  <Link href={Routes.ExploitDetail({ exploitId: task.exploit.id })}>
+                    <a>{task.exploit.name}</a>
                   </Link>
                 </td>
-              )}
-              <td>{task.exploit.problem.name}</td>
-              <td>
-                <Link href={Routes.ExploitDetail({ exploitId: task.exploit.id })}>
-                  <a>{task.exploit.name}</a>
-                </Link>
-              </td>
-              <td>{task.team.name}</td>
-              <td>
-                {task.flagSubmission ? (
-                  <KeywordChip
-                    text={task.flagSubmission.submissionResult}
-                    icon={<FlagIcon className="h-4 w-4 ml-1" />}
-                  />
-                ) : (
-                  <KeywordChip text={task.status} />
-                )}
-              </td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
+                <td>{task.team.name}</td>
+                <td>
+                  {task.flagSubmission ? (
+                    <KeywordChip
+                      text={task.flagSubmission.submissionResult}
+                      icon={<FlagIcon className="h-4 w-4 ml-1" />}
+                    />
+                  ) : (
+                    <KeywordChip text={task.status} />
+                  )}
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </>
   )
 }
 
