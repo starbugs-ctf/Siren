@@ -39,6 +39,9 @@ const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiRespo
         statusMessage: "",
         ...args,
       },
+      include: {
+        flagSubmission: true,
+      },
     })
 
     res.status(200).json(task)

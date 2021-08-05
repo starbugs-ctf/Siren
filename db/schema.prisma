@@ -13,8 +13,7 @@ generator client {
 // --------------------------------------
 
 model Round {
-  id    Int     @id @default(autoincrement())
-  alias String?
+  id Int @id @default(autoincrement())
 
   tasks Task[]
 }
@@ -73,7 +72,7 @@ model Task {
 
   // enum: PENDING, RUNNING, OKAY, RUNTIME_ERROR, TIMEOUT
   status        String
-  statusMessage String
+  statusMessage String   @default("")
   createdAt     DateTime @default(now())
 
   round   Round @relation(fields: [roundId], references: [id])
@@ -103,7 +102,7 @@ model FlagSubmission {
 
   // enum: CORRECT, DUPLICATE, WRONG, EXPIRED, SKIPPED, UNKNOWN_ERROR
   submissionResult String
-  message          String
+  message          String @default("")
 }
 
 // --------------------------------------
