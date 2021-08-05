@@ -1,12 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useRef, useState, useEffect } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { ExclamationIcon } from "@heroicons/react/outline"
-import { BlitzPage, Link, NotFoundError, Routes, useParam, useQuery } from "blitz"
-import { format } from "date-fns"
-import getTask from "app/queries/getTask"
-import KeywordChip from "app/components/KeywordChip"
-import { DATE_FORMAT } from "app/timeUtil"
 import TaskView from "./TaskView"
 
 type TaskModalProps = {
@@ -32,7 +26,7 @@ const TaskModal = (props: TaskModalProps) => {
     }
     window.addEventListener("keydown", close)
     return () => window.removeEventListener("keydown", close)
-  }, [])
+  }, [onClose])
 
   if (!open || !taskId) return null
 
