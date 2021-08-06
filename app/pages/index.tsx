@@ -8,21 +8,18 @@ import RoundDashboard from "app/components/RoundDashboard"
 import { RoundTaskList } from "app/components/TaskList"
 import getAllRoundRanges from "app/queries/getAllRoundRanges"
 import getAllRounds from "app/queries/getAllRounds"
-import { getRoundDuration, RoundDuration } from "app/timeUtil"
+import { CurrentRound, getCurrentRound, getRoundDuration, RoundDuration } from "app/timeUtil"
 
 const HOUR_FORMAT = "MMM dd HH:mm:ss"
 
-type RoundData = {
-  round: Round
-  duration: RoundDuration
-}
-
 type RoundNowProps = {
-  lastRound: RoundData | null
-  nextRound: RoundData | null
+  currentRound: CurrentRound
 }
 
-const RoundNow = ({ lastRound, nextRound }: RoundNowProps) => {
+const RoundNow = ({ currentRound }: RoundNowProps) => {
+  const lastRound = currentRound.last
+  const nextRound = currentRound.next
+
   const [now, setNow] = useState(new Date())
 
   useEffect(() => {
@@ -93,36 +90,16 @@ const Home: BlitzPage = () => {
     }
   }, [])
 
-  const roundData = rounds.map((round) => {
-    return {
-      round,
-      duration: getRoundDuration(roundRanges, round.id),
-    }
-  })
+  const currentRound = getCurrentRound(rounds, roundRanges, now)
 
-  let lastRound: null | RoundData = null
-  let nextRound: null | RoundData = null
-
-  for (const current of roundData) {
-    if (current.duration.start <= now) {
-      if (lastRound === null || current.duration.start >= lastRound.duration.start) {
-        lastRound = current
-      }
-    } else {
-      if (nextRound === null || current.duration.start <= nextRound.duration.start) {
-        nextRound = current
-      }
-    }
-  }
-
-  if (lastRound === null) {
+  if (currentRound.last === null) {
     return (
       <div className="card">
         <div className="card-title">
           <h1>Dashboard</h1>
         </div>
         <div className="card-body">
-          <RoundNow lastRound={lastRound} nextRound={nextRound} />
+          <RoundNow currentRound={currentRound} />
         </div>
       </div>
     )
@@ -136,8 +113,8 @@ const Home: BlitzPage = () => {
             <h1>Dashboard</h1>
           </div>
           <div className="card-body">
-            <RoundNow lastRound={lastRound} nextRound={nextRound} />
-            <RoundDashboard round={lastRound.round.id} />
+            <RoundNow currentRound={currentRound} />
+            <RoundDashboard round={currentRound.last.round.id} />
           </div>
         </div>
       </div>
@@ -147,7 +124,7 @@ const Home: BlitzPage = () => {
             <h1>Tasks</h1>
           </div>
           <div className="card-body">
-            <RoundTaskList round={lastRound.round.id} />
+            <RoundTaskList round={currentRound.last.round.id} />
           </div>
         </div>
       </div>
