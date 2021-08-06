@@ -49,7 +49,7 @@ const RoundNow = ({ lastRound, nextRound }: RoundNowProps) => {
     return (
       <div className="round-now">
         <h2>{format(now, HOUR_FORMAT)}</h2>
-        Waiting for the contest to start ({formatDistance(nextRound!.duration.end, now, OPT)})
+        Waiting for the contest to start ({formatDistance(nextRound!.duration.start, now, OPT)})
       </div>
     )
   } else {
