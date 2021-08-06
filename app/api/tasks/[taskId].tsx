@@ -19,7 +19,7 @@ const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiRespo
   }
 
   try {
-    const taskId = z.number().parse(req.query.taskId)
+    const taskId = parseInt(req.query.taskId, 10)
 
     if (req.method === "GET") {
       const task = await db.task.findUnique({
