@@ -75,13 +75,17 @@ export const TaskView = (props: TaskViewProps) => {
         <div className="flex-1 m-3">
           <h3 className="bg-gray-100 text-gray-700 px-3 py-1 font-semibold">stdout</h3>
           <div className="px-4 py-2 border">
-            <code>{task.stdout}</code>
+            <pre>
+              <code>{task.stdout}</code>
+            </pre>
           </div>
         </div>
         <div className="flex-1 m-3">
           <h3 className="bg-gray-100 text-gray-700 px-3 py-1 font-semibold">stderr</h3>
           <div className="px-4 py-2 border">
-            <code>{task.stderr}</code>
+            <pre>
+              <code>{task.stderr}</code>
+            </pre>
           </div>
         </div>
       </div>
