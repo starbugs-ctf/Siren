@@ -36,7 +36,7 @@ const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiRespo
     // This part needs to be CTF-specific
     // We hardcode it for now
     res.status(200).json({
-      host: `10.10.0.${team.aux}`,
+      host: `10.13.37.${team.aux}`,
       port: problem.aux,
     })
   } catch (err) {
