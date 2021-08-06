@@ -40,7 +40,7 @@ const TaskModal = (props: TaskModalProps) => {
         open={open}
         onClose={onClose}
       >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex items-middle justify-center">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -66,17 +66,13 @@ const TaskModal = (props: TaskModalProps) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-xl sm:w-full">
-              <div className="bg-white">
-                <div className="sm:flex sm:items-start">
-                  <div className="card">
-                    <div className="card-title" ref={modalRef}>
-                      <h1>Task {taskId}</h1>
-                    </div>
-                    <div className="card-body">
-                      <TaskView taskId={taskId} />
-                    </div>
-                  </div>
+            <div className="modal">
+              <div className="card">
+                <div className="card-title" ref={modalRef}>
+                  <h1>Task {taskId}</h1>
+                </div>
+                <div className="card-body">
+                  <TaskView taskId={taskId} />
                 </div>
               </div>
             </div>

@@ -1,6 +1,5 @@
-import { BlitzPage, Link, NotFoundError, Routes, useParam, useQuery } from "blitz"
+import { Link, Routes, useQuery } from "blitz"
 import { format } from "date-fns"
-import Layout from "app/core/layouts/Layout"
 import getTask from "app/queries/getTask"
 import KeywordChip from "app/components/KeywordChip"
 import { DATE_FORMAT } from "app/timeUtil"

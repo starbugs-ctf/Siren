@@ -214,3 +214,8 @@ table.data tbody tr:hover {
 .chip.chip-blue {
   @apply bg-blue-200 text-blue-700;
 }
+
+/* Modal */
+.modal {
+  @apply inline-block transform transition-all my-8 align-middle max-w-screen-xl w-full;
+}
