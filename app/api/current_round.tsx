@@ -1,6 +1,7 @@
 import { BlitzApiRequest, BlitzApiResponse, BlitzApiHandler } from "blitz"
 import db from "db"
 import { getCurrentRound } from "app/timeUtil"
+import { subSeconds } from "date-fns"
 
 const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiResponse) => {
   if (req.method !== "GET") {
@@ -13,7 +14,7 @@ const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiRespo
   const rounds = await db.round.findMany()
   const roundRanges = await db.roundRange.findMany()
 
-  const now = new Date()
+  const now = subSeconds(new Date(), 15)
 
   const currentRound = getCurrentRound(rounds, roundRanges, now)
 
