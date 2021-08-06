@@ -19,6 +19,13 @@ const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiRespo
   }
 
   try {
+    if (req.query.taskId === undefined || Array.isArray(req.query.taskId)) {
+      res.status(400).json({
+        msg: "There should be one and only one task ID",
+      })
+      return
+    }
+
     const taskId = parseInt(req.query.taskId, 10)
 
     if (req.method === "GET") {
