@@ -24,6 +24,10 @@ export const DefenseDashboard = (props: DefenseDashboardProps) => {
     taskMap[task.exploit.problemId].push(task)
   }
 
+  if (tasks.length == 0) {
+    return <p>No exploits exist.</p>
+  }
+
   return (
     <>
       {problems.map((problem) =>

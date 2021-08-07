@@ -1,4 +1,4 @@
-import { BlitzPage, useQuery } from "blitz"
+import { BlitzPage, NotFoundError, useQuery } from "blitz"
 import { useEffect, useState } from "react"
 import { format, formatDistance } from "date-fns"
 import { Round } from "db"
@@ -10,6 +10,7 @@ import getAllRoundRanges from "app/queries/getAllRoundRanges"
 import getAllRounds from "app/queries/getAllRounds"
 import { CurrentRound, getCurrentRound, getRoundDuration, RoundDuration } from "app/timeUtil"
 import DefenseDashboard from "app/components/DefenseDashboard"
+import getTeamBySlug from "app/queries/getTeamBySlug"
 
 const HOUR_FORMAT = "MMM dd HH:mm:ss"
 
@@ -78,6 +79,8 @@ const RoundNow = ({ currentRound }: RoundNowProps) => {
 }
 
 const Home: BlitzPage = () => {
+  const [ourTeam] = useQuery(getTeamBySlug, "starbugs")
+
   const [rounds] = useQuery(getAllRounds, null)
   const [roundRanges] = useQuery(getAllRoundRanges, null)
 
@@ -90,6 +93,10 @@ const Home: BlitzPage = () => {
       clearInterval(interval)
     }
   }, [])
+
+  if (!ourTeam) {
+    throw new NotFoundError("Team starbugs not found in DB")
+  }
 
   const currentRound = getCurrentRound(rounds, roundRanges, now)
 
@@ -107,35 +114,35 @@ const Home: BlitzPage = () => {
   }
 
   return (
-    <div className="flex flex-wrap flex-column gap-8">
-      <div className="flex-auto">
-        <div className="card">
-          <div className="card-title">
-            <h1>Dashboard</h1>
-          </div>
-          <div className="card-body">
-            <RoundNow currentRound={currentRound} />
-            <RoundDashboard round={currentRound.last.round.id} />
-          </div>
+    <div>
+      <div className="card mb-8">
+        <div className="card-title">
+          <h1>Dashboard</h1>
+        </div>
+        <div className="card-body">
+          <RoundNow currentRound={currentRound} />
+          <RoundDashboard round={currentRound.last.round.id} />
         </div>
       </div>
-      <div className="flex-auto">
-        <div className="card">
-          <div className="card-title">
-            <h1>Patch Testing</h1>
-          </div>
-          <div className="card-body">
-            <DefenseDashboard round={currentRound.last.round.id} teamId={13} />
+      <div className="w-full flex flex-wrap flex-row gap-8">
+        <div className="flex-auto">
+          <div className="card">
+            <div className="card-title">
+              <h1>Patch Testing</h1>
+            </div>
+            <div className="card-body">
+              <DefenseDashboard round={currentRound.last.round.id} teamId={ourTeam.id} />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex-auto">
-        <div className="card">
-          <div className="card-title">
-            <h1>Tasks</h1>
-          </div>
-          <div className="card-body">
-            <RoundTaskList round={currentRound.last.round.id} />
+        <div className="flex-auto">
+          <div className="card">
+            <div className="card-title">
+              <h1>Tasks</h1>
+            </div>
+            <div className="card-body">
+              <RoundTaskList round={currentRound.last.round.id} />
+            </div>
           </div>
         </div>
       </div>
