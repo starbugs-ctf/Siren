@@ -8,15 +8,10 @@ import TaskModal from "./TaskModal"
 
 type TaskListProps = {
   showRound?: boolean
-  showProblem?: boolean
-  showTarget?: boolean
   tasks: TaskQueryReturnType[]
 }
 
 export const TaskList = (props: TaskListProps) => {
-  const showProblem = props.showProblem === undefined ? true : props.showProblem
-  const showTarget = props.showTarget === undefined ? true : props.showTarget
-
   const [modalState, setModalState] = useState({
     open: false,
     taskId: null,
@@ -42,9 +37,9 @@ export const TaskList = (props: TaskListProps) => {
           <tr>
             <th className="text-left">Task #</th>
             {props.showRound && <th className="text-left">Round #</th>}
-            {showProblem && <th className="text-left">Problem</th>}
+            <th className="text-left">Problem</th>
             <th className="text-left">Exploit</th>
-            {showTarget && <th className="text-left">Target</th>}
+            <th className="text-left">Target</th>
             <th className="text-left">Status</th>
           </tr>
         </thead>
@@ -62,13 +57,13 @@ export const TaskList = (props: TaskListProps) => {
                     </Link>
                   </td>
                 )}
-                {showProblem && <td>{task.exploit.problem.name}</td>}
+                <td>{task.exploit.problem.name}</td>
                 <td>
                   <Link href={Routes.ExploitDetail({ exploitId: task.exploit.id })}>
                     <a>{task.exploit.name}</a>
                   </Link>
                 </td>
-                {showTarget && <td>{task.team.name}</td>}
+                <td>{task.team.name}</td>
                 <td>
                   {task.flagSubmission ? (
                     <KeywordChip
@@ -114,6 +109,65 @@ export const RoundTaskList = (props: RoundTaskListProps) => {
     <>
       <h2 className="mb-4">Tasks for Round {props.round}</h2>
       <TaskList tasks={tasks} />
+    </>
+  )
+}
+
+type DefenseTaskListProps = {
+  tasks: TaskQueryReturnType[]
+}
+
+export const DefenseTaskList = (props: DefenseTaskListProps) => {
+  const [modalState, setModalState] = useState({
+    open: false,
+    taskId: null,
+  })
+  const showModal = (taskId) => {
+    setModalState({
+      open: true,
+      taskId,
+    })
+  }
+  const closeModal = () => {
+    setModalState({
+      open: false,
+      taskId: null,
+    })
+  }
+  const { open, taskId } = modalState
+  return (
+    <>
+      <TaskModal open={open} onClose={closeModal} taskId={taskId}></TaskModal>
+      <table className="data">
+        <thead>
+          <tr>
+            <th className="text-left">Task #</th>
+            <th className="text-left">Problem</th>
+            <th className="text-left">Exploit</th>
+            <th className="text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.tasks.map((task) => {
+            return (
+              <tr key={task.id}>
+                <td>
+                  <a onClick={(e) => showModal(task.id)}>{task.id}</a>
+                </td>
+                <td>{task.exploit.problem.name}</td>
+                <td>
+                  <Link href={Routes.ExploitDetail({ exploitId: task.exploit.id })}>
+                    <a>{task.exploit.name}</a>
+                  </Link>
+                </td>
+                <td>
+                  <KeywordChip text={task.flagSubmission ? "VULN" : "SAFE"} />
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </>
   )
 }

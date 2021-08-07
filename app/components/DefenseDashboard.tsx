@@ -1,7 +1,7 @@
 import { useQuery } from "blitz"
 import getAllProblems from "app/queries/getAllProblems"
 import getTasksForRoundAndTeam from "app/queries/getTasksFoRoundAndTeam"
-import { TaskList } from "./TaskList"
+import { DefenseTaskList, TaskList } from "./TaskList"
 
 type DefenseDashboardProps = {
   round: number
@@ -34,7 +34,7 @@ export const DefenseDashboard = (props: DefenseDashboardProps) => {
         taskMap[problem.id].length > 0 ? (
           <div key={problem.id}>
             <h2 className="mb-2 mt-1">{problem.name}</h2>
-            <TaskList tasks={taskMap[problem.id]} showProblem={false} showTarget={false} />
+            <DefenseTaskList tasks={taskMap[problem.id]} />
           </div>
         ) : null
       )}

@@ -6,7 +6,7 @@ export type KeywordChipProps = {
 }
 
 export const KeywordChip = (props: KeywordChipProps) => {
-  const GREEN_KEYWORDS = ["OKAY", "CORRECT", "ENABLED"]
+  const GREEN_KEYWORDS = ["OKAY", "CORRECT", "ENABLED", "SAFE"]
   const RED_KEYWORDS = [
     "RUNTIME_ERROR",
     "TIMEOUT",
@@ -15,6 +15,7 @@ export const KeywordChip = (props: KeywordChipProps) => {
     "UNKNOWN_ERROR",
     "DISABLED",
     "NO_FLAG",
+    "VULN",
   ]
   const BLUE_KEYWORDS = ["DUPLICATE", "SKIPPED"]
 
