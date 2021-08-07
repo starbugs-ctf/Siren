@@ -75,6 +75,8 @@ export const TaskList = (props: TaskListProps) => {
                       text={task.flagSubmission.submissionResult}
                       icon={<FlagIcon className="h-4 w-4 ml-1" />}
                     />
+                  ) : task.status === "OKAY" ? (
+                    <KeywordChip text="NO_FLAG" />
                   ) : (
                     <KeywordChip text={task.status} />
                   )}

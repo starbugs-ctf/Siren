@@ -7,7 +7,15 @@ export type KeywordChipProps = {
 
 export const KeywordChip = (props: KeywordChipProps) => {
   const GREEN_KEYWORDS = ["OKAY", "CORRECT", "ENABLED"]
-  const RED_KEYWORDS = ["RUNTIME_ERROR", "TIMEOUT", "WRONG", "EXPIRED", "UNKNOWN_ERROR", "DISABLED"]
+  const RED_KEYWORDS = [
+    "RUNTIME_ERROR",
+    "TIMEOUT",
+    "WRONG",
+    "EXPIRED",
+    "UNKNOWN_ERROR",
+    "DISABLED",
+    "NO_FLAG",
+  ]
   const BLUE_KEYWORDS = ["DUPLICATE", "SKIPPED"]
 
   const upperText = props.text.toUpperCase()
