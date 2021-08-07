@@ -17,7 +17,7 @@ export const KeywordChip = (props: KeywordChipProps) => {
     "NO_FLAG",
     "VULN",
   ]
-  const BLUE_KEYWORDS = ["DUPLICATE", "SKIPPED"]
+  const BLUE_KEYWORDS = ["DUPLICATE", "SKIPPED", "CANCELED"]
 
   const upperText = props.text.toUpperCase()
 

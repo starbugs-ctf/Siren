@@ -70,7 +70,7 @@ model Exploit {
 model Task {
   id Int @id @default(autoincrement())
 
-  // enum: PENDING, RUNNING, OKAY, RUNTIME_ERROR, TIMEOUT
+  // enum: PENDING, RUNNING, OKAY, RUNTIME_ERROR, TIMEOUT, CANCELED
   status        String
   statusMessage String   @default("")
   createdAt     DateTime @default(now())

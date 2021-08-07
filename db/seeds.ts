@@ -29,6 +29,7 @@ const TASK_STATUS = [
   "RUNNING",
   "RUNTIME_ERROR",
   "TIMEOUT",
+  "CANCELED",
 ]
 const FLAG_STATUS = [
   "CORRECT",

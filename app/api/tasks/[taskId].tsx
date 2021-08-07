@@ -4,7 +4,7 @@ import db from "db"
 import * as z from "zod"
 
 const PutTaskSchema = z.object({
-  status: z.enum(["RUNNING", "OKAY", "RUNTIME_ERROR", "TIMEOUT"]).optional(),
+  status: z.enum(["RUNNING", "OKAY", "RUNTIME_ERROR", "TIMEOUT", "CANCELED"]).optional(),
   statusMessage: z.string().optional(),
   stdout: z.string().optional(),
   stderr: z.string().optional(),
