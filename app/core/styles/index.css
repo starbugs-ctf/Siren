@@ -99,11 +99,11 @@ main {
 /* Dashboard */
 table.dashboard {
   @apply border-collapse;
-  margin-right: 128px;
+  margin-right: 150px;
 }
 
 table.dashboard th.rotate {
-  height: 128px;
+  height: 150px;
   white-space: nowrap;
   @apply align-bottom;
 }
@@ -116,7 +116,7 @@ table.dashboard th.rotate > div {
 
 table.dashboard th.rotate > div > span {
   @apply inline-block border-b border-gray-300 text-left pb-1;
-  width: 180px;
+  width: 210px;
 }
 
 table.dashboard td.team {
