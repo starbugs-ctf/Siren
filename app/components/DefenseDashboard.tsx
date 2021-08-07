@@ -20,6 +20,13 @@ export const DefenseDashboard = (props: DefenseDashboardProps) => {
     taskMap[problem.id] = []
   }
 
+  tasks.sort((first, second) => {
+    if (first.exploitId != second.exploitId) {
+      return first.exploitId - second.exploitId
+    }
+    return first.createdAt.getTime() - second.createdAt.getTime()
+  })
+
   for (const task of tasks) {
     taskMap[task.exploit.problemId].push(task)
   }

@@ -142,7 +142,6 @@ export const DefenseTaskList = (props: DefenseTaskListProps) => {
         <thead>
           <tr>
             <th className="text-left">Task #</th>
-            <th className="text-left">Problem</th>
             <th className="text-left">Exploit</th>
             <th className="text-left">Status</th>
           </tr>
@@ -154,7 +153,6 @@ export const DefenseTaskList = (props: DefenseTaskListProps) => {
                 <td>
                   <a onClick={(e) => showModal(task.id)}>{task.id}</a>
                 </td>
-                <td>{task.exploit.problem.name}</td>
                 <td>
                   <Link href={Routes.ExploitDetail({ exploitId: task.exploit.id })}>
                     <a>{task.exploit.name}</a>

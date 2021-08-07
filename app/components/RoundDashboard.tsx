@@ -42,14 +42,16 @@ export const RoundDashboard = (props: RoundDashboardProps) => {
         </tr>
       </thead>
       <tbody>
-        {teams.map((team) => (
-          <tr key={team.slug}>
-            <td className="team">{team.name}</td>
-            {problems.map((problem) =>
-              taskListToCell(taskMap[team.id][problem.id], `${team.id}-${problem.id}`)
-            )}
-          </tr>
-        ))}
+        {teams
+          .filter((team) => team.slug !== "starbugs")
+          .map((team) => (
+            <tr key={team.slug}>
+              <td className="team">{team.name}</td>
+              {problems.map((problem) =>
+                taskListToCell(taskMap[team.id][problem.id], `${team.id}-${problem.id}`)
+              )}
+            </tr>
+          ))}
       </tbody>
     </table>
   )
