@@ -52,16 +52,23 @@ export const taskListToCell = (tasks: GetTasksForRoundReturnType, key: string) =
   }
 
   let pending = false
+  let all_canceled = true
   for (const task of tasks) {
     if (task.flagSubmission?.submissionResult === "CORRECT") {
       return <OkayCell key={key} />
     } else if (task.status === "PENDING" || task.status === "RUNNING") {
       pending = true
     }
+
+    if (task.status !== "CANCELED") {
+      all_canceled = false
+    }
   }
 
   if (pending) {
     return <LoadingCell key={key} />
+  } else if (all_canceled) {
+    return <EmptyCell key={key} />
   } else {
     return <FailCell key={key} />
   }
