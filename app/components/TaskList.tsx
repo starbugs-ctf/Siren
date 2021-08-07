@@ -8,10 +8,15 @@ import TaskModal from "./TaskModal"
 
 type TaskListProps = {
   showRound?: boolean
+  showProblem?: boolean
+  showTarget?: boolean
   tasks: TaskQueryReturnType[]
 }
 
 export const TaskList = (props: TaskListProps) => {
+  const showProblem = props.showProblem === undefined ? true : props.showProblem
+  const showTarget = props.showTarget === undefined ? true : props.showTarget
+
   const [modalState, setModalState] = useState({
     open: false,
     taskId: null,
@@ -37,9 +42,9 @@ export const TaskList = (props: TaskListProps) => {
           <tr>
             <th className="text-left">Task #</th>
             {props.showRound && <th className="text-left">Round #</th>}
-            <th className="text-left">Problem</th>
+            {showProblem && <th className="text-left">Problem</th>}
             <th className="text-left">Exploit</th>
-            <th className="text-left">Target</th>
+            {showTarget && <th className="text-left">Target</th>}
             <th className="text-left">Status</th>
           </tr>
         </thead>
@@ -57,13 +62,13 @@ export const TaskList = (props: TaskListProps) => {
                     </Link>
                   </td>
                 )}
-                <td>{task.exploit.problem.name}</td>
+                {showProblem && <td>{task.exploit.problem.name}</td>}
                 <td>
                   <Link href={Routes.ExploitDetail({ exploitId: task.exploit.id })}>
                     <a>{task.exploit.name}</a>
                   </Link>
                 </td>
-                <td>{task.team.name}</td>
+                {showTarget && <td>{task.team.name}</td>}
                 <td>
                   {task.flagSubmission ? (
                     <KeywordChip

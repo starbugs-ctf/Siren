@@ -9,6 +9,7 @@ import { RoundTaskList } from "app/components/TaskList"
 import getAllRoundRanges from "app/queries/getAllRoundRanges"
 import getAllRounds from "app/queries/getAllRounds"
 import { CurrentRound, getCurrentRound, getRoundDuration, RoundDuration } from "app/timeUtil"
+import DefenseDashboard from "app/components/DefenseDashboard"
 
 const HOUR_FORMAT = "MMM dd HH:mm:ss"
 
@@ -83,8 +84,8 @@ const Home: BlitzPage = () => {
   const [now, setNow] = useState(new Date())
 
   useEffect(() => {
-    // Refresh every 20 seconds
-    const interval = setInterval(() => setNow(new Date()), 20 * 1000)
+    // Refresh every 10 seconds
+    const interval = setInterval(() => setNow(new Date()), 10 * 1000)
     return () => {
       clearInterval(interval)
     }
@@ -115,6 +116,16 @@ const Home: BlitzPage = () => {
           <div className="card-body">
             <RoundNow currentRound={currentRound} />
             <RoundDashboard round={currentRound.last.round.id} />
+          </div>
+        </div>
+      </div>
+      <div className="flex-auto">
+        <div className="card">
+          <div className="card-title">
+            <h1>Patch Testing</h1>
+          </div>
+          <div className="card-body">
+            <DefenseDashboard round={currentRound.last.round.id} teamId={13} />
           </div>
         </div>
       </div>
