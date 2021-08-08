@@ -14,7 +14,7 @@ const handler: BlitzApiHandler = async (req: BlitzApiRequest, res: BlitzApiRespo
   const rounds = await db.round.findMany()
   const roundRanges = await db.roundRange.findMany()
 
-  const now = subSeconds(new Date(), 15)
+  const now = subSeconds(new Date(), 5)
 
   const currentRound = getCurrentRound(rounds, roundRanges, now)
 
