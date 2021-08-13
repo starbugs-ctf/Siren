@@ -1,9 +1,10 @@
 # Siren
 
-Siren is a Attack & Defense CTF dashboard
+Siren is an Attack & Defense CTF dashboard
 developed by team StarBugs for DEF CON CTF 2021 Finals.
 Siren is a frontend for our exploit management system.
-For backend side, check [fireball](https://github.com/starbugs-ctf/fireball).
+For backend side, check [fireball](https://github.com/starbugs-ctf/fireball)
+(not public yet).
 
 ![screenshot](./Screenshot.png)
 
